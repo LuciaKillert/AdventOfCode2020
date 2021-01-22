@@ -1,30 +1,13 @@
 ans = []
 
-def func(lst):
+def func(lst, g):
     global ans
     for i in range(len(lst)-1):
-        if not(lst[i] + 1 == lst[i+1] or lst[i] + 2 == lst[i+1] or lst[i] + 3 == lst[i+1]):
-            return False
-    if lst not in ans:
-        ans.append(lst)
-    return True
+        if lst[i+1] - lst[i] > 3:
+            return
+    ans.append(lst[g-1:])
+    #print("Adding: ", lst[g-1:])
 
-def func2(k):
-    sList = sortedList.copy()
-    while True:
-        if k < len(sortedList)-2:
-                stack.append(sList.pop(k+1))
-                print(sList)
-                if not func(sList):
-                    sList.insert(k+1, stack.pop())
-                    k+=1
-        elif len(stack) != 0:
-            t = sortedList.index(stack[len(stack)-1])
-            g = stack.pop()
-            sList.insert(t-len(stack), g)
-            k = sList.index(g)
-        else:
-            break
 
 with open("vstupTest.txt", "r") as f:
     listA = [int(x) for x in f.read().split("\n")]
@@ -32,13 +15,23 @@ with open("vstupTest.txt", "r") as f:
 sortedList = sorted(listA)
 sortedList.insert(0, 0)
 sortedList.append(sortedList[len(sortedList)-1]+3)
+ans.append(sortedList)
 
+counter = 0
+tNum = 0
 
-sList = []
-stack = []
+while counter< len(ans):
+    #print("Testing: ", ans[counter])
+    for i in range(1,len(ans[counter])-2):
+        if i != 1:
+            ans[counter].insert(i-1, tNum)
+        tNum = ans[counter][i]
+        ans[counter].pop(i)
+        func(ans[counter], i)
+    counter += 1
 
-for i in range(len(sortedList)):
-    stack.clear()
-    func2(i)
-    print("                       ")
+#print(ans)
 print(len(ans))
+
+for an in ans:
+    print(an)
