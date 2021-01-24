@@ -1,6 +1,6 @@
 import time 
 start = time.time()
-with open("vstupTest.txt", "r") as f:
+with open("vstup.txt", "r") as f:
     listA = [list(x) for x in f.read().split("\n")]
 
 listLen = len(listA)

@@ -16,14 +16,11 @@ def recursion(lst):
                         if not (rowStep == 0 and colStep ==0):
                             newR = row + rowStep
                             newC = col + colStep
-                            while 0<=newR<rowLen and 0<=newC<colLen and lst[newR][newC] == '.':
-                                newR += rowStep
-                                newC += colStep
                             if 0<=newR<rowLen and 0<=newC<colLen and lst[newR][newC] == '#':
                                 counter += 1
                 if lst[row][col] == 'L' and counter == 0:
                     lst2[row][col] = '#'
-                elif lst[row][col] == '#' and counter >= 5:
+                elif lst[row][col] == '#' and counter >= 4:
                     lst2[row][col] = 'L'
     if lst2 != lst:
         recursion(lst2)
