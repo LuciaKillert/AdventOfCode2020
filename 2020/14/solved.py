@@ -59,6 +59,3 @@ for line in lines:
         #     mem[domask(pos, m)] = int(arg)
 
 print(sum(mem.values()))
-
-
-
